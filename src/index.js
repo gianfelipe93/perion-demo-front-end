@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import LandingPage from './components/LandingPage';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import GamesList from './components/GamesList';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <LandingPage />,
+    children: [{
+      path: "user/:steamId",
+      element: <GamesList />,
+    }]
+  }
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <LandingPage />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
