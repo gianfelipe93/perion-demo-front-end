@@ -34,11 +34,73 @@ const StyledAppWrapper = styled.div`
             }
           }
 
+          .steamIdInputContainer {
+            margin-top: 2rem;
+            display:flex;
+            column-gap: 10px;
+            align-items: center;
+
+            .MuiAutocomplete-inputRoot {
+              background: white;
+              border-radius: 35px;           
+            }
+            
+            .Mui-focused {
+              border-top-right-radius: 35px;
+              border-top-left-radius: 35px;
+              border-width: 3px;
+              border-color: #8bff00;     
+              
+              .MuiOutlinedInput-notchedOutline {
+              border-width: 3px;
+              border-color: #8bff00;
+            }
+            }
+
+            .Mui-expanded {
+              .MuiAutocomplete-inputRoot {
+              background: white;
+              /* border-bottom-right-radius: 0px;
+              border-bottom-left-radius: 0px;           */
+            }
+
+            .MuiOutlinedInput-notchedOutline {
+              border-bottom: 0px;
+            }
+            }
+
+            .MuiInputLabel-shrink {
+                background: #8bff00;
+                padding: 0px 5px;
+                border-radius: 10px;
+                font-weight: 600;
+              }
+
+            .searchButton {
+              border-radius: 40px;
+              width: 6rem;
+              height: 3rem;
+              cursor: pointer;
+
+              &:hover {
+                border: 3px solid #8bff00;
+                font-weight: 600;
+              }
+            }
+
+            
+          } 
+          }
+
           .steamIdInput {
             margin-top: 2rem;
             display:flex;
             column-gap: 10px;
             align-items: center;
+
+            .MuiAutocomplete-endAdornment {
+              display: none;
+            }
 
             .MuiInputBase-input {
               background: white;
@@ -47,11 +109,7 @@ const StyledAppWrapper = styled.div`
             }
 
             .Mui-focused {
-            .MuiOutlinedInput-notchedOutline {
-              border-radius: 35px;
-              border-width: 3px;
-              border-color: #8bff00;
-            }
+            
           }            
 
               .MuiInputLabel-shrink {
