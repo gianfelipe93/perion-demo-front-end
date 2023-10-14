@@ -7,6 +7,16 @@ const StyledAppWrapper = styled.div`
                      text-align: center;
                      padding: 5rem 0px;
                      border-bottom: 3px solid #8bff00;
+                     color: white;
+
+                     img {
+                            width: 5rem;
+                            height: 5rem;
+                     }
+
+                     a {
+                            color: #8bff00;
+                     }
 
                      .title {
                             color: white;
@@ -14,9 +24,23 @@ const StyledAppWrapper = styled.div`
                             font-size: 2rem;
                      }
 
+                     .basicStats {
+                            margin: 10px 0px;
+                     }
+
                      .subtitle {
                             color: white;
                             margin-top: 5px;
+                     }
+
+                     .link {
+                            text-decoration: underline;
+                            cursor: pointer;
+                            margin-top: 10px;
+
+                            &:hover {
+                                   color: #8bff00;
+                            }
                      }
               }
 
@@ -61,7 +85,7 @@ const StyledAppWrapper = styled.div`
                             
 
                             .gameContainer {
-                                   width: 20%;
+                                   width: 25%;
 
                                    &:hover {
                                           border: 3px solid #8bff00;
@@ -75,12 +99,21 @@ const StyledAppWrapper = styled.div`
                                           }
                                    }
 
-                                   .gameTitle {
-                                          font-size: 1rem;
+                                   .infoContainer {
+                                          margin: auto 10px;
+
+                                          .gameInfo {
                                           font-weight: 700;
                                           align-self: center;
                                           margin-left: 6px;
+                                          font-size: .8rem;
                                    }
+
+                                   .title {
+                                          font-size: 1rem;
+                                   }
+                                   }
+                                   
                             }
                      }
               }
