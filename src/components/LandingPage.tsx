@@ -6,12 +6,14 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Loader from './util/Loader';
 import searchSteamId from '../api/searchSteamId';
 import readPreviousSearches from '../util/readPreviousSearches';
+import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
   const [steamId, setSteamId] = React.useState<string | null>('');
   const [error, setError] = React.useState<string>('');
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [previousSearches, setPreviousSearches] = React.useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const previousSearches = readPreviousSearches()
@@ -38,9 +40,9 @@ export default function LandingPage() {
           previousSearches.push({ label: steamId })
           setPreviousSearches(previousSearches)
           localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
-        }
 
-        console.log(apiResponse)
+        }
+        navigate(`user/${steamId}`, { state: { apiResponse } });
       }
     }
   }
@@ -64,7 +66,7 @@ export default function LandingPage() {
               id="combo-box-demo"
               options={previousSearches}
               onChange={(_event: any, newValue: any) => {
-                setSteamId(newValue.value);
+                setSteamId(newValue.label);
               }}
               disableClearable={true}
               sx={{ width: 300 }}

@@ -60,8 +60,6 @@ const StyledAppWrapper = styled.div`
             .Mui-expanded {
               .MuiAutocomplete-inputRoot {
               background: white;
-              /* border-bottom-right-radius: 0px;
-              border-bottom-left-radius: 0px;           */
             }
 
             .MuiOutlinedInput-notchedOutline {
@@ -92,46 +90,6 @@ const StyledAppWrapper = styled.div`
           } 
           }
 
-          .steamIdInput {
-            margin-top: 2rem;
-            display:flex;
-            column-gap: 10px;
-            align-items: center;
-
-            .MuiAutocomplete-endAdornment {
-              display: none;
-            }
-
-            .MuiInputBase-input {
-              background: white;
-              border-radius: 35px;
-              width: 20rem;
-            }
-
-            .Mui-focused {
-            
-          }            
-
-              .MuiInputLabel-shrink {
-                background: #8bff00;
-                padding: 0px 5px;
-                border-radius: 10px;
-                font-weight: 600;
-              }
-
-            .searchButton {
-              border-radius: 40px;
-              width: 6rem;
-              height: 3rem;
-              cursor: pointer;
-
-              &:hover {
-                border: 3px solid #8bff00;
-                font-weight: 600;
-              }
-            }
-          }
-
           .loaderContainer {
             margin-top: 15px;
           }
@@ -142,7 +100,7 @@ const StyledAppWrapper = styled.div`
             padding-top: 1rem;
           }
         }
-   }
+   
 `
 
 export default StyledAppWrapper

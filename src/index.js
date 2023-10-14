@@ -13,10 +13,9 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <LandingPage />,
-    children: [{
-      path: "user/:steamId",
-      element: <GamesList />,
-    }]
+  }, {
+    path: "user/:steamId",
+    element: <GamesList />,
   }
 ]);
 
