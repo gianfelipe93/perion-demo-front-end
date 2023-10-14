@@ -73,6 +73,16 @@ const StyledAppWrapper = styled.div`
               }
             }
           }
+
+          .loaderContainer {
+            margin-top: 15px;
+          }
+
+          .error {
+            color: red;
+            font-weight: 600;
+            padding-top: 1rem;
+          }
         }
    }
 `
