@@ -4,11 +4,12 @@ const API_BASE_URL = 'http://localhost:4000/api'
 
 const searchSteamId = async (steamId: string) => {
   try {
-    const apiResponse = await axios.get(`${API_BASE_URL}/user/games/${steamId}`)
+    const apiResponse = await axios.get(`${API_BASE_URL}/user/${steamId}`)
     return apiResponse.data
-  } catch (error) {
+  } catch (error: any) {
     console.log(`Error getting SteamId: ${error}`)
-    return { error: `Oh no! An error occurred while getting your steam information` }
+    console.log(error)
+    return { error: error.response.data }
   }
 }
 
