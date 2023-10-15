@@ -23,7 +23,7 @@ type Props = {
   closePopup: () => void
 }
 
-const AchievementPopup = ({ open, selectedGame, steamId, closePopup }: Props) => {
+const AchievementPopup = ({ open = false, selectedGame, steamId, closePopup }: Props) => {
   const [loading, setLoading] = React.useState<boolean>(true)
   const [achievements, setAchievements] = React.useState<Achievement[]>([])
   const [tempAchievements, setTempAchievements] = React.useState<Achievement[]>([])

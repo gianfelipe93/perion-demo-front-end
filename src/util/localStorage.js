@@ -1,7 +1,7 @@
 const readPreviousSearches = () => {
   const unformattedPreviousSearches = localStorage.getItem("previousSearches");
   if (unformattedPreviousSearches) {
-    return JSON.parse(unformattedPreviousSearches).map(s => s.label)
+    return JSON.parse(unformattedPreviousSearches)
   }
 
   return []

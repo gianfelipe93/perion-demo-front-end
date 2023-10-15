@@ -16,7 +16,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const previousSearches = readPreviousSearches()
+    const previousSearches = readPreviousSearches().map((s: any) => s.label)
     setPreviousSearches(previousSearches)
   }, [])
 
