@@ -3,10 +3,11 @@ import StyledGameList from '../style/StyledGameList.style'
 import { useLocation, useNavigate } from "react-router-dom";
 import Game from './Game';
 import Loader from './util/Loader';
-import { convertMinutesToHoursAndMinutes } from "./convertMinutesToHoursAndMinutes";
+import { convertMinutesToHoursAndMinutes } from "../util/convertMinutesToHoursAndMinutes";
+import AchievementPopup from './AchievementsPopup';
 
 type Game = {
-  appid?: number,
+  appid: number,
   name: string,
   playtime_2weeks?: number,
   playtime_forever: number,
@@ -16,7 +17,7 @@ type Game = {
   playtime_linux_forever?: number,
   rtime_last_played?: number,
   playtime_disconnected?: number,
-  has_community_visible_stats?: boolean
+  has_community_visible_stats: boolean
 }
 
 type BasicStats = {
@@ -31,7 +32,14 @@ type User = {
   profileurl: string,
   avatar: string,
   profilestate: number,
-  lastlogoff: number
+  lastlogoff: number,
+  steamid: string
+}
+
+
+type PopUpInfo = {
+  open: boolean,
+  selectedGame: number
 }
 
 const GamesList = () => {
@@ -40,6 +48,8 @@ const GamesList = () => {
   const [loadingBasicStats, setLoadingBasicStats] = React.useState<boolean>(false)
   const [basicStats, setBasicStats] = React.useState<BasicStats>({} as BasicStats)
   const [userInfo, setUserInfo] = React.useState<User>({} as User)
+  const [popUpInfo, setPopupInfo] = React.useState<PopUpInfo>({} as PopUpInfo)
+
   const { state } = useLocation()
   const navigate = useNavigate()
   const gamesCount = state?.apiResponse?.game_count
@@ -96,6 +106,20 @@ const GamesList = () => {
     }
   }
 
+  const onGameClicked = (appid: number) => {
+    setPopupInfo({
+      open: true,
+      selectedGame: appid
+    })
+  }
+
+  const closePopup = () => {
+    setPopupInfo({
+      open: false,
+      selectedGame: 0
+    })
+  }
+
   return (
     <StyledGameList>
       <div className='gamesListContainer'>
@@ -118,9 +142,10 @@ const GamesList = () => {
             <button className='searchButton' onClick={() => filterGames()}>SEARCH</button>
           </div>
           <div className='gamesList'>
-            {currentListOfGames.map(Game)}
+            {currentListOfGames.map((props) => (<Game {...props} onGameClicked={onGameClicked} />))}
           </div>
         </div>
+        <AchievementPopup {...popUpInfo} closePopup={closePopup} steamId={userInfo.steamid} />
       </div>
     </StyledGameList>
   )

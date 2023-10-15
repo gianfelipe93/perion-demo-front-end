@@ -83,13 +83,21 @@ const StyledAppWrapper = styled.div`
                             column-gap: 1rem;
                             cursor: pointer;
                             
+                            .noBorder {
+                                          border: none;
 
+                                          &:hover {
+                                                 border: none !important;
+                                   }
+                                   }
                             .gameContainer {
                                    width: 25%;
 
                                    &:hover {
                                           border: 3px solid #8bff00;
                                    }
+                                   
+                                  
 
                                    .game {
                                           display: flex;
@@ -102,6 +110,13 @@ const StyledAppWrapper = styled.div`
                                    .infoContainer {
                                           margin: auto 10px;
 
+                                          .stats {
+                                                 margin-top: 10px;
+                                          }
+
+                                          .noStats {
+                                                 color: red;
+                                          }
                                           .gameInfo {
                                           font-weight: 700;
                                           align-self: center;
@@ -117,6 +132,8 @@ const StyledAppWrapper = styled.div`
                             }
                      }
               }
+
+              
        }
 `
 
