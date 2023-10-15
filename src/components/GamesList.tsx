@@ -86,7 +86,8 @@ const GamesList = () => {
   }, [])
 
   const filterGames = () => {
-    const games = state?.apiResponse?.games
+    const { userGames } = state?.apiResponse
+    const { games } = userGames
 
     if (searchTerm) {
       setCurrentListOfGames(games.filter((game: Game) => game.name.toLowerCase().includes(searchTerm.toLowerCase())))

@@ -17,7 +17,6 @@ export default function LandingPage() {
 
   useEffect(() => {
     const previousSearches = readPreviousSearches()
-    console.log(previousSearches)
     setPreviousSearches(previousSearches)
   }, [])
 
