@@ -95,7 +95,7 @@ const StyledAppWrapper = styled.div`
                                           display: flex;
                                           img {
                                                  width: 8rem;
-                                                 height: 8rem;
+                                                 height: 100%;
                                           }
                                    }
 
