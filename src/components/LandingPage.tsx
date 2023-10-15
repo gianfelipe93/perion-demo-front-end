@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Loader from './util/Loader';
 import searchSteamId from '../api/searchSteamId';
-import readPreviousSearches from '../util/readPreviousSearches';
+import { readPreviousSearches, getSearchFromLocalStorage } from '../util/localStorage.js';
 import { useNavigate } from "react-router-dom";
 
 export default function LandingPage() {
@@ -25,23 +25,30 @@ export default function LandingPage() {
       setIsLoading(true)
       setError('')
 
-      const apiResponse = await searchSteamId(steamId)
+      const isSearchCached = getSearchFromLocalStorage(steamId)
 
-      setIsLoading(false)
-      if (apiResponse.error) {
-        setError(apiResponse.error)
+      if (isSearchCached) {
+        navigate(`user/${steamId}`, { state: { apiResponse: isSearchCached.response } });
+        return
       } else {
-        const previousSearches = readPreviousSearches()
+        const apiResponse = await searchSteamId(steamId)
 
-        const searchAlreadyExists = previousSearches.find((search: any) => search.label === steamId)
+        setIsLoading(false)
+        if (apiResponse.error) {
+          setError(apiResponse.error)
+        } else {
+          const previousSearches = readPreviousSearches()
 
-        if (!searchAlreadyExists) {
-          previousSearches.push({ label: steamId })
-          setPreviousSearches(previousSearches)
-          localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
+          const searchAlreadyExists = previousSearches.find((search: any) => search.label === steamId)
 
+          if (!searchAlreadyExists) {
+            previousSearches.push({ label: steamId, response: apiResponse })
+            setPreviousSearches(previousSearches)
+            localStorage.setItem("previousSearches", JSON.stringify(previousSearches));
+
+          }
+          navigate(`user/${steamId}`, { state: { apiResponse } });
         }
-        navigate(`user/${steamId}`, { state: { apiResponse } });
       }
     }
   }
@@ -65,7 +72,8 @@ export default function LandingPage() {
               id="combo-box-demo"
               options={previousSearches}
               onChange={(_event: any, newValue: any) => {
-                setSteamId(newValue.label);
+                console.log({ newValue })
+                setSteamId(newValue);
               }}
               disableClearable={true}
               sx={{ width: 300 }}
