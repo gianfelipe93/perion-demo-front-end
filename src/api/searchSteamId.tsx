@@ -1,10 +1,10 @@
 import axios from "axios"
 
-const API_BASE_URL = 'http://localhost:4000/api'
+const { REACT_APP_API_BASE_URL } = process.env
 
 const searchSteamId = async (steamId: string) => {
   try {
-    const apiResponse = await axios.get(`${API_BASE_URL}/user/${steamId}`)
+    const apiResponse = await axios.get(`${REACT_APP_API_BASE_URL}/user/${steamId}`)
     return apiResponse.data
   } catch (error: any) {
     console.log(`Error getting SteamId: ${error}`)
